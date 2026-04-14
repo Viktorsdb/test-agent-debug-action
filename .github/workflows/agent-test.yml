@@ -1,0 +1,16 @@
+name: Agent Debug Test
+
+on: [push, pull_request]
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Diagnose agent failures
+        uses: Viktorsdb/agent-debug@main
+        with:
+          api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          provider: anthropic
+          traces_dir: agent_traces
